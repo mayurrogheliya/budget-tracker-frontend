@@ -63,6 +63,7 @@ const TransactionTable: React.FC = () => {
       <Card bordered={true}>
         <Input placeholder="Search..." style={{ marginBottom: 16 }} />
         <Table
+          style={{ overflowX: "auto" }}
           columns={columns}
           dataSource={dataSource}
           rowKey="id"
