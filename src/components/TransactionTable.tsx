@@ -1,8 +1,35 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Button, Card, Input, Space, Table, Tooltip } from "antd";
-import React from "react";
+import { Button, Card, Input, message, Space, Table, Tooltip } from "antd";
+import React, { useEffect } from "react";
+import { useTransactionStore } from "../store/useTransactionStore";
+import { transactionAPI } from "../api/endpoints/transaction";
+
+interface Transaction {
+  _id: string;
+  type: string;
+  amount: number;
+  description: string;
+  date: string;
+}
 
 const TransactionTable: React.FC = () => {
+  const { transactions, fetchTransactions, setEditingTransactions, setMode } =
+    useTransactionStore();
+
+  useEffect(() => {
+    fetchTransactions();
+  }, [fetchTransactions]);
+
+  const deleteTransaction = async (id: string) => {
+    try {
+      await transactionAPI.delete(id);
+      message.success("Transaction deleted successfully");
+      fetchTransactions();
+    } catch (error: any) {
+      message.error(error.response.data.message);
+    }
+  };
+
   const columns = [
     {
       title: "Type",
@@ -27,13 +54,17 @@ const TransactionTable: React.FC = () => {
     {
       title: "Actions",
       key: "actions",
-      render: () => (
+      render: (_: any, record: Transaction) => (
         <Space size={0}>
           <Tooltip title="Edit Transaction">
             <Button
               type="text"
               icon={<EditOutlined />}
               style={{ color: "#2ecc71" }}
+              onClick={() => {
+                setEditingTransactions(record);
+                setMode("form");
+              }}
             />
           </Tooltip>
           <Tooltip title="Delete Transaction">
@@ -41,20 +72,13 @@ const TransactionTable: React.FC = () => {
               type="text"
               icon={<DeleteOutlined />}
               style={{ color: "#e74c3c" }}
+              onClick={() => {
+                deleteTransaction(record._id);
+              }}
             />
           </Tooltip>
         </Space>
       ),
-    },
-  ];
-
-  const dataSource = [
-    {
-      id: "1",
-      type: "Income",
-      amount: "1000",
-      description: "Salary",
-      date: "01/01/2022",
     },
   ];
 
@@ -65,8 +89,8 @@ const TransactionTable: React.FC = () => {
         <Table
           style={{ overflowX: "auto" }}
           columns={columns}
-          dataSource={dataSource}
-          rowKey="id"
+          dataSource={transactions}
+          rowKey="_id"
           bordered={true}
           pagination={{
             showSizeChanger: true,
