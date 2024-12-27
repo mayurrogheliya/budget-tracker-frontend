@@ -8,7 +8,8 @@ import TransactionTable from "../components/TransactionTable";
 const { Title } = Typography;
 
 const Dashboard: React.FC = () => {
-  const { mode, setMode } = useTransactionStore();
+  const { mode, setMode, setEditingTransactions } =
+    useTransactionStore();
   return (
     <Space direction="vertical" style={{ width: "100%" }} className="mt-5">
       <Flex justify="space-between">
@@ -20,6 +21,7 @@ const Dashboard: React.FC = () => {
               icon={<EyeOutlined />}
               onClick={() => {
                 setMode("table");
+                setEditingTransactions(null);
               }}
             >
               {"View"}
@@ -31,6 +33,7 @@ const Dashboard: React.FC = () => {
               icon={<PlusOutlined />}
               onClick={() => {
                 setMode("form");
+                setEditingTransactions(null);
               }}
             >
               {"Add"}
