@@ -17,9 +17,9 @@ const AnalyticsCard: React.FC<AnalyticsCardProps> = ({
   type,
   chartData,
 }) => {
-  const color = type === "income" ? "#2ecc71" : "#e74c3c";
+  const color = type === "Expense" ? "#e74c3c" : "#2ecc71";
   return (
-    <Card className="w-72 md:w-80">
+    <Card className="w-72 md:w-80 bg-gray-100/70">
       <Title level={4} style={{ color, margin: 0 }}>
         {title}
       </Title>
