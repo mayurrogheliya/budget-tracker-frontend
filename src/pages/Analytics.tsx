@@ -1,5 +1,5 @@
-import { Space, Typography } from "antd";
-import React from "react";
+import { Space, Typography, Spin } from "antd";
+import React, { useEffect, useState } from "react";
 
 const { Title } = Typography;
 
@@ -11,70 +11,109 @@ import {
   Legend,
   Chart as ChartJS,
 } from "chart.js";
+import { transactionAPI } from "../api/endpoints/transaction";
+import { useTransactionStore } from "../store/useTransactionStore";
 import AnalyticsCard from "../components/AnalyticsCard";
 
-// Register all necessary Chart.js components
 ChartJS.register(CategoryScale, LinearScale, ArcElement, ChartTooltip, Legend);
 
-const chartData = {
-  labels: ["Income", "Expense"],
-  datasets: [
-    {
-      label: "Amount",
-      data: [1000, 500],
-      backgroundColor: ["#2ecc71", "#e74c3c"],
-    },
-  ],
-  hoverOffset: 4,
-};
-
-const incomeData = {
-  labels: ["January", "February", "March", "April", "May", "June"],
-  datasets: [
-    {
-      label: "Income",
-      data: [65, 59, 80, 81, 56, 55],
-      backgroundColor: ["#2ecc71"],
-    },
-  ],
-  hoverOffset: 4,
-};
-
-const expenseData = {
-  labels: ["January", "February", "March", "April", "May", "June"],
-  datasets: [
-    {
-      label: "Expense",
-      data: [28, 48, 40, 19, 86, 27],
-      backgroundColor: ["#e74c3c"],
-    },
-  ],
-  hoverOffset: 4,
-};
-
 const Analytics: React.FC = () => {
+  const [analyticsData, setAnalyticsData] = useState<any>(null);
+
+  const { loading, setLoading } = useTransactionStore();
+
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      try {
+        setLoading(true);
+        const response = await transactionAPI.getAnalytics();
+        console.log("API Response:", response);
+        setAnalyticsData(response.data?.data);
+      } catch (error: any) {
+        console.log(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAnalytics();
+  }, [setLoading]);
+
+  function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
   return (
     <Space direction="vertical" style={{ width: "100%" }} className="mt-5">
       <Title level={2}>Analytics</Title>
       <div className="flex justify-center items-center flex-wrap gap-10">
-        <AnalyticsCard
-          title="Income"
-          amount={200}
-          type="income"
-          chartData={incomeData}
-        />
-        <AnalyticsCard
-          title="Expense"
-          amount={500}
-          type="expense"
-          chartData={expenseData}
-        />
-        <AnalyticsCard
-          title="Total Income vs Expense"
-          amount={700}
-          type="total"
-          chartData={chartData}
-        />
+        {loading ? (
+          <Spin tip="Loading..." size="large" />
+        ) : analyticsData ? (
+          <>
+            <AnalyticsCard
+              title="Income"
+              amount={analyticsData.totalIncome}
+              type="Income"
+              chartData={{
+                labels: analyticsData.nameIncomeData,
+                datasets: [
+                  {
+                    label: "Income",
+                    data: analyticsData.sepIncomeData,
+                    backgroundColor: analyticsData.nameIncomeData.map(() =>
+                      getRandomColor()
+                    ),
+                  },
+                ],
+                hoverOffset: 4,
+              }}
+            />
+            <AnalyticsCard
+              title="Expense"
+              amount={analyticsData.totalExpense}
+              type="Expense"
+              chartData={{
+                labels: analyticsData.nameExpenseData,
+                datasets: [
+                  {
+                    label: "Expense",
+                    data: analyticsData.sepExpenseData,
+                    backgroundColor: analyticsData.nameExpenseData.map(() =>
+                      getRandomColor()
+                    ),
+                  },
+                ],
+                hoverOffset: 4,
+              }}
+            />
+            <AnalyticsCard
+              title="Income vs Expense"
+              amount={analyticsData.netAmount}
+              type="Income vs Expense"
+              chartData={{
+                labels: ["Income", "Expense"],
+                datasets: [
+                  {
+                    label: "Amount",
+                    data: [
+                      analyticsData.totalIncome,
+                      analyticsData.totalExpense,
+                    ],
+                    backgroundColor: ["#2ecc71", "#e74c4c"],
+                  },
+                ],
+                hoverOffset: 4,
+              }}
+            />
+          </>
+        ) : (
+          <div>No analytics data available.</div>
+        )}
       </div>
     </Space>
   );
