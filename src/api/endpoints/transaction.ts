@@ -32,4 +32,8 @@ export const transactionAPI = {
   delete: async (id: string): Promise<ApiResponse<Transaction>> => {
     return api.delete(`/transactions/${id}`);
   },
+
+  getAnalytics: async (): Promise<ApiResponse<Transaction[]>> => {
+    return api.get("/transactions/list");
+  },
 };
