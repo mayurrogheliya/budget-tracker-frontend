@@ -18,8 +18,8 @@ interface TransactionState {
   setTransactions: (transactions: Transaction[]) => void;
   editingTransactions: Transaction | null;
   setEditingTransactions: (transaction: Transaction | null) => void;
-  fetchTransactions: (search: string) => void;
   searchText: string;
+  fetchTransactions: (searchText?: string) => void;
   setSearchText: (searchText: string) => void;
 }
 
@@ -39,7 +39,9 @@ export const useTransactionStore = create<TransactionState>((set, get) => ({
   fetchTransactions: async (search) => {
     try {
       const response = await transactionAPI.getAll({ search });
-      get().setTransactions(response.data.data);
+      console.log("response", response);
+
+      get().setTransactions(response.data.transaction);
     } catch (error: any) {
       console.log(error.message);
     }

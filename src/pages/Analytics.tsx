@@ -28,7 +28,7 @@ const Analytics: React.FC = () => {
         setLoading(true);
         const response = await transactionAPI.getAnalytics();
         console.log("API Response:", response);
-        setAnalyticsData(response.data?.data);
+        setAnalyticsData(response.data.transaction);
       } catch (error: any) {
         message.error(error.message);
       } finally {

@@ -7,26 +7,30 @@ interface Transaction {
   date: string;
 }
 
-interface ApiResponse<T> {
-  data: T;
+interface ApiResponse {
+  transaction: [];
   statusCode: number;
   message: string;
 }
 
 export const transactionAPI = {
-  getAll: async (params: string): Promise<ApiResponse<Transaction[]>> => {
+  getAll: async (params: {
+    search?: string;
+  }): Promise<ApiResponse<Transaction[]>> => {
     return api.get("/transactions", { params });
   },
 
-  create: async (data: Transaction): Promise<ApiResponse<Transaction>> => {
-    return api.post("/transactions", data);
+  create: async (
+    transaction: Transaction
+  ): Promise<ApiResponse<Transaction>> => {
+    return api.post("/transactions", transaction);
   },
 
   update: async (
     id: string,
-    data: Transaction
+    transaction: Transaction
   ): Promise<ApiResponse<Transaction>> => {
-    return api.put(`/transactions/${id}`, data);
+    return api.put(`/transactions/${id}`, transaction);
   },
 
   delete: async (id: string): Promise<ApiResponse<Transaction>> => {

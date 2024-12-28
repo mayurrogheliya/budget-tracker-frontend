@@ -52,7 +52,7 @@ const TransactionTable: React.FC = () => {
     try {
       await transactionAPI.delete(id);
       message.success("Transaction deleted successfully");
-      fetchTransactions();
+      fetchTransactions(searchText);
     } catch (error: any) {
       message.error(error.message);
     }
