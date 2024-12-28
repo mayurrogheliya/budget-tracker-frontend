@@ -18,7 +18,9 @@ interface TransactionState {
   setTransactions: (transactions: Transaction[]) => void;
   editingTransactions: Transaction | null;
   setEditingTransactions: (transaction: Transaction | null) => void;
-  fetchTransactions: () => void;
+  fetchTransactions: (search: string) => void;
+  searchText: string;
+  setSearchText: (searchText: string) => void;
 }
 
 export const useTransactionStore = create<TransactionState>((set, get) => ({
@@ -31,10 +33,12 @@ export const useTransactionStore = create<TransactionState>((set, get) => ({
   editingTransactions: null,
   setEditingTransactions: (transaction) =>
     set({ editingTransactions: transaction }),
+  searchText: "",
+  setSearchText: (searchText) => set({ searchText }),
 
-  fetchTransactions: async () => {
+  fetchTransactions: async (search) => {
     try {
-      const response = await transactionAPI.getAll();
+      const response = await transactionAPI.getAll({ search });
       get().setTransactions(response.data.data);
     } catch (error: any) {
       console.log(error.message);

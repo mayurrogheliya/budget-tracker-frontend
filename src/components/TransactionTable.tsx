@@ -1,6 +1,6 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Card, Input, message, Space, Table, Tooltip } from "antd";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useTransactionStore } from "../store/useTransactionStore";
 import { transactionAPI } from "../api/endpoints/transaction";
 
@@ -13,12 +13,40 @@ interface Transaction {
 }
 
 const TransactionTable: React.FC = () => {
-  const { transactions, fetchTransactions, setEditingTransactions, setMode } =
-    useTransactionStore();
+  const {
+    transactions,
+    fetchTransactions,
+    setEditingTransactions,
+    setMode,
+    searchText,
+    setSearchText,
+  } = useTransactionStore();
+
+  const handleSearch = useCallback(
+    (e: any) => {
+      setSearchText(e.target.value);
+      fetchTransactions(e.target.value);
+    },
+    [fetchTransactions, setSearchText]
+  );
 
   useEffect(() => {
-    fetchTransactions();
-  }, [fetchTransactions]);
+    fetchTransactions(searchText);
+  }, [fetchTransactions, searchText]);
+
+  const highlightText = (text: string, highlight: string) => {
+    if (!text || !highlight) return text;
+    const regex = text.toString().split(new RegExp(`(${highlight})`, "gi"));
+    return regex.map((match, i) =>
+      match.toLowerCase() === highlight.toLowerCase() ? (
+        <span key={i} style={{ backgroundColor: "yellow" }}>
+          {match}
+        </span>
+      ) : (
+        match
+      )
+    );
+  };
 
   const deleteTransaction = async (id: string) => {
     try {
@@ -26,7 +54,7 @@ const TransactionTable: React.FC = () => {
       message.success("Transaction deleted successfully");
       fetchTransactions();
     } catch (error: any) {
-      message.error(error.response.data.message);
+      message.error(error.message);
     }
   };
 
@@ -35,6 +63,7 @@ const TransactionTable: React.FC = () => {
       title: "Type",
       dataIndex: "type",
       key: "type",
+      render: (text: string) => highlightText(text, searchText),
     },
     {
       title: "Amount",
@@ -45,6 +74,7 @@ const TransactionTable: React.FC = () => {
       title: "Description",
       dataIndex: "description",
       key: "description",
+      render: (text: string) => highlightText(text, searchText),
     },
     {
       title: "Date",
@@ -85,7 +115,12 @@ const TransactionTable: React.FC = () => {
   return (
     <>
       <Card bordered={true}>
-        <Input placeholder="Search..." style={{ marginBottom: 16 }} />
+        <Input
+          placeholder="Search..."
+          style={{ marginBottom: 16 }}
+          onChange={handleSearch}
+          value={searchText}
+        />
         <Table
           style={{ overflowX: "auto" }}
           columns={columns}
@@ -93,6 +128,7 @@ const TransactionTable: React.FC = () => {
           rowKey="_id"
           bordered={true}
           pagination={{
+            pageSize: 10,
             showSizeChanger: true,
             showQuickJumper: true,
             showTotal: (total) => `Total ${total} transactions`,
