@@ -14,8 +14,8 @@ interface ApiResponse<T> {
 }
 
 export const transactionAPI = {
-  getAll: async (): Promise<ApiResponse<Transaction[]>> => {
-    return api.get("/transactions");
+  getAll: async (params: string): Promise<ApiResponse<Transaction[]>> => {
+    return api.get("/transactions", { params });
   },
 
   create: async (data: Transaction): Promise<ApiResponse<Transaction>> => {
