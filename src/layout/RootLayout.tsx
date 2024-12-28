@@ -13,9 +13,14 @@ const RootLayout: React.FC = () => {
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="absolute md:hidden bg-slate-300/15 h-min w-full flex justify-between items-center px-2 py-2 border shadow-sm">
-        <h1 className="text-xl font-semibold text-center text-orange-700">
-          Budget Tracker
-        </h1>
+        <div className="flex gap-2 items-center">
+          <div>
+            <img src="/src/assets/icon.jpg" alt="bt" width="25px" />
+          </div>
+          <h1 className="text-xl font-semibold text-center text-sky-800">
+            Budget Tracker
+          </h1>
+        </div>
         <button
           className=" size-fit float-end z-20 bg-gray-200 py-1 px-3 rounded-md hover:ring-1 hover:ring-black"
           onClick={toggleSidebar}
@@ -31,8 +36,11 @@ const RootLayout: React.FC = () => {
       >
         <div className="flex flex-col h-full">
           <div className="flex justify-between bg-gray-100 p-4 py-2 md:py-4 gap-3 items-center">
-            <div className="text-xl font-semibold text-center text-orange-700">
-              Budget Tracker
+            <div className="w-full text-xl font-semibold text-sky-800 flex justify-center items-center gap-5">
+              <div className="md:block hidden">
+                <img src="/src/assets/icon.jpg" alt="bt" width="30px" />
+              </div>
+              <div>Budget Tracker</div>
             </div>
             <button
               className="bg-gray-200 px-3 py-1 rounded-md hover:ring-1 hover:ring-black hover:cursor-pointer md:hidden"
@@ -48,9 +56,9 @@ const RootLayout: React.FC = () => {
               onClick={toggleSidebar}
               className={({ isActive }) =>
                 `block py-2 px-4 rounded ${
-                  isActive ? "hover:bg-orange-700" : "hover:bg-gray-100"
+                  isActive ? "hover:bg-sky-700" : "hover:bg-gray-100"
                 } transition-colors duration-200 ${
-                  isActive ? "bg-orange-700 text-white" : "text-gray-700"
+                  isActive ? "bg-sky-700 text-white" : "text-gray-700"
                 }`
               }
             >
@@ -61,9 +69,9 @@ const RootLayout: React.FC = () => {
               onClick={toggleSidebar}
               className={({ isActive }) =>
                 `block py-2 px-4 rounded ${
-                  isActive ? "hover:bg-orange-700" : "hover:bg-gray-100"
+                  isActive ? "hover:bg-sky-700" : "hover:bg-gray-100"
                 } transition-colors duration-200 ${
-                  isActive ? "bg-orange-700 text-white" : "text-gray-700"
+                  isActive ? "bg-sky-700 text-white" : "text-gray-700"
                 }`
               }
             >
