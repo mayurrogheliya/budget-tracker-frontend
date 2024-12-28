@@ -39,9 +39,8 @@ export const useTransactionStore = create<TransactionState>((set, get) => ({
   fetchTransactions: async (search) => {
     try {
       const response = await transactionAPI.getAll({ search });
-      console.log("response", response);
-
-      get().setTransactions(response.data.transaction);
+      const transactionData = response.transaction || [];
+      get().setTransactions(transactionData);
     } catch (error: any) {
       console.log(error.message);
     }

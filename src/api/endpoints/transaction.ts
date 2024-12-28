@@ -1,14 +1,15 @@
 import { api } from "../axios";
 
 interface Transaction {
+  _id: string;
   type: string;
   amount: number;
   description: string;
   date: string;
 }
 
-interface ApiResponse {
-  transaction: [];
+interface ApiResponse<T> {
+  transaction?: T;
   statusCode: number;
   message: string;
 }
@@ -17,27 +18,32 @@ export const transactionAPI = {
   getAll: async (params: {
     search?: string;
   }): Promise<ApiResponse<Transaction[]>> => {
-    return api.get("/transactions", { params });
+    const response = await api.get("/transactions", { params });
+    return response.data;
   },
 
   create: async (
     transaction: Transaction
   ): Promise<ApiResponse<Transaction>> => {
-    return api.post("/transactions", transaction);
+    const response = await api.post("/transactions", transaction);
+    return response.data;
   },
 
   update: async (
     id: string,
     transaction: Transaction
   ): Promise<ApiResponse<Transaction>> => {
-    return api.put(`/transactions/${id}`, transaction);
+    const response = await api.put(`/transactions/${id}`, transaction);
+    return response.data;
   },
 
   delete: async (id: string): Promise<ApiResponse<Transaction>> => {
-    return api.delete(`/transactions/${id}`);
+    const response = await api.delete(`/transactions/${id}`);
+    return response.data;
   },
 
   getAnalytics: async (): Promise<ApiResponse<Transaction[]>> => {
-    return api.get("/transactions/list");
+    const response = await api.get("/transactions/list");
+    return response.data;
   },
 };
