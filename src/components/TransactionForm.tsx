@@ -62,7 +62,7 @@ const TransactionForm: React.FC = () => {
       }
       setEditingTransactions(null);
     } catch (error: any) {
-      message.error(error.response?.data?.message || "An error occurred");
+      message.error(error.message || "An error occurred");
     } finally {
       setLoading(false);
     }
@@ -134,13 +134,19 @@ const TransactionForm: React.FC = () => {
               <Flex>
                 <Space>
                   <Form.Item>
-                    <Button type="primary" onClick={() => form.resetFields()}>
-                      Reset
+                    <Button
+                      className="bg-sky-600 !text-gray-50 hover:!bg-sky-600"
+                      htmlType="submit"
+                    >
+                      Submit
                     </Button>
                   </Form.Item>
                   <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                      Submit
+                    <Button
+                      className="bg-sky-600 !text-gray-50 hover:!bg-sky-600"
+                      onClick={() => form.resetFields()}
+                    >
+                      Reset
                     </Button>
                   </Form.Item>
                 </Space>

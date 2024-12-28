@@ -1,4 +1,4 @@
-import { Space, Typography, Spin, Card } from "antd";
+import { Space, Typography, Spin, Card, message } from "antd";
 import React, { useEffect, useState } from "react";
 
 const { Title } = Typography;
@@ -30,7 +30,7 @@ const Analytics: React.FC = () => {
         console.log("API Response:", response);
         setAnalyticsData(response.data?.data);
       } catch (error: any) {
-        console.log(error.message);
+        message.error(error.message);
       } finally {
         setLoading(false);
       }
