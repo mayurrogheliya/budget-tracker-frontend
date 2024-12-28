@@ -15,7 +15,7 @@ const RootLayout: React.FC = () => {
       <div className="absolute md:hidden bg-slate-300/15 h-min w-full flex justify-between items-center px-2 py-2 border shadow-sm">
         <div className="flex gap-2 items-center">
           <div>
-            <img src="/src/assets/icon.jpg" alt="bt" width="25px" />
+            <img src="../assets/icon.jpg" alt="bt" width="25px" />
           </div>
           <h1 className="text-xl font-semibold text-center text-sky-800">
             Budget Tracker
