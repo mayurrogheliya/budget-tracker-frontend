@@ -69,7 +69,7 @@ const TransactionForm: React.FC = () => {
   };
 
   return (
-    <Card className="shadow-md">
+    <Card>
       <>
         {loading ? (
           <Spin tip="Loading..." size="large" fullscreen />
