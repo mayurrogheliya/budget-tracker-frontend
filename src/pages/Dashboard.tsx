@@ -8,8 +8,7 @@ import TransactionTable from "../components/TransactionTable";
 const { Title } = Typography;
 
 const Dashboard: React.FC = () => {
-  const { mode, setMode, setEditingTransactions } =
-    useTransactionStore();
+  const { mode, setMode, setEditingTransactions } = useTransactionStore();
   return (
     <Space direction="vertical" style={{ width: "100%" }} className="mt-5">
       <Flex justify="space-between">
@@ -17,7 +16,7 @@ const Dashboard: React.FC = () => {
         <>
           {(mode == "form" || mode == "read-only-form") && (
             <Button
-              type="primary"
+              className="bg-sky-600 !text-gray-50 hover:!bg-sky-600"
               icon={<EyeOutlined />}
               onClick={() => {
                 setMode("table");
@@ -29,7 +28,7 @@ const Dashboard: React.FC = () => {
           )}
           {mode == "table" && (
             <Button
-              type="primary"
+              className="bg-sky-600 !text-gray-50 hover:!bg-sky-600"
               icon={<PlusOutlined />}
               onClick={() => {
                 setMode("form");
