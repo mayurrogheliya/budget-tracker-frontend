@@ -53,50 +53,52 @@ const RootLayout: React.FC = () => {
         } md:translate-x-0 md:block`}
       >
         <div className="flex flex-col h-full">
-          <div className="flex justify-between bg-gray-100 p-4 py-2 md:py-4 gap-3 items-center">
-            <div className="w-full text-xl font-semibold text-sky-800 flex justify-center items-center gap-5">
-              <div className="md:block hidden">
-                <img src={icon} alt="bt" width="30px" />
+          <div>
+            <div className="flex justify-between bg-gray-100 p-4 py-2 md:py-4 gap-3 items-center">
+              <div className="w-full text-xl font-semibold text-sky-800 flex justify-center items-center gap-5">
+                <div className="md:block hidden">
+                  <img src={icon} alt="bt" width="30px" />
+                </div>
+                <div>Budget Tracker</div>
               </div>
-              <div>Budget Tracker</div>
+              <button
+                className="bg-gray-200 px-3 py-1 rounded-md hover:ring-1 hover:ring-black hover:cursor-pointer md:hidden"
+                onClick={toggleSidebar}
+              >
+                <FontAwesomeIcon icon={faClose} />
+              </button>
             </div>
-            <button
-              className="bg-gray-200 px-3 py-1 rounded-md hover:ring-1 hover:ring-black hover:cursor-pointer md:hidden"
-              onClick={toggleSidebar}
-            >
-              <FontAwesomeIcon icon={faClose} />
-            </button>
-          </div>
 
-          <nav className="flex flex-col mt-4 space-y-2 px-4">
-            <NavLink
-              to="/"
-              onClick={toggleSidebar}
-              className={({ isActive }) =>
-                `block py-2 px-4 rounded ${
-                  isActive ? "hover:bg-sky-700" : "hover:bg-gray-100"
-                } transition-colors duration-200 ${
-                  isActive ? "bg-sky-700 text-white" : "text-gray-700"
-                }`
-              }
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/analytics"
-              onClick={toggleSidebar}
-              className={({ isActive }) =>
-                `block py-2 px-4 rounded ${
-                  isActive ? "hover:bg-sky-700" : "hover:bg-gray-100"
-                } transition-colors duration-200 ${
-                  isActive ? "bg-sky-700 text-white" : "text-gray-700"
-                }`
-              }
-            >
-              Analytics
-            </NavLink>
-          </nav>
-          <div className="mt-auto px-4 pb-4">
+            <nav className="flex flex-col mt-4 space-y-2 px-4">
+              <NavLink
+                to="/"
+                onClick={toggleSidebar}
+                className={({ isActive }) =>
+                  `block py-2 px-4 rounded ${
+                    isActive ? "hover:bg-sky-700" : "hover:bg-gray-100"
+                  } transition-colors duration-200 ${
+                    isActive ? "bg-sky-700 text-white" : "text-gray-700"
+                  }`
+                }
+              >
+                Home
+              </NavLink>
+              <NavLink
+                to="/analytics"
+                onClick={toggleSidebar}
+                className={({ isActive }) =>
+                  `block py-2 px-4 rounded ${
+                    isActive ? "hover:bg-sky-700" : "hover:bg-gray-100"
+                  } transition-colors duration-200 ${
+                    isActive ? "bg-sky-700 text-white" : "text-gray-700"
+                  }`
+                }
+              >
+                Analytics
+              </NavLink>
+            </nav>
+          </div>
+          <div className="mt-auto mb-4 space-y-2 px-4">
             <button
               onClick={handleLogout}
               className="block w-full py-2 px-4 text-center bg-red-600 text-white rounded hover:bg-red-700 transition-colors duration-200"
