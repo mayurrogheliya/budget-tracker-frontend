@@ -27,7 +27,6 @@ api.interceptors.response.use(
   (response) => response,
 
   (error) => {
-    console.log(error.response);
     const { logout } = useUserStore.getState();
     if (error.response && error.response.status === 401) {
       logout();

@@ -51,7 +51,6 @@ const TransactionForm: React.FC = () => {
         date: values.date ? dayjs(values.date).format("DD/MM/YYYY") : null,
       };
       if (editingTransactions) {
-        console.log("Values", formattedValues);
         await transactionAPI.update(formattedValues._id, formattedValues);
         message.success("Transactions updated successfully");
         setMode("table");
