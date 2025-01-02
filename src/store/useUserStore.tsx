@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { userAPI } from "../api/endpoints/user";
 
 interface User {
   _id: string;
