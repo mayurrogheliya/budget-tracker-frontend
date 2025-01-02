@@ -19,7 +19,7 @@ const { Title } = Typography;
 
 const LoginForm: React.FC = () => {
   const [form] = Form.useForm();
-  const { setLoading, login, isAuthenticated } = useUserStore();
+  const { setLoading, loading, login, isAuthenticated } = useUserStore();
   const navigate = useNavigate();
 
   const handelLogin = async (values: any) => {
@@ -109,10 +109,21 @@ const LoginForm: React.FC = () => {
                     <Button
                       htmlType="submit"
                       className="bg-sky-600 text-base !text-gray-50 hover:!bg-sky-600 w-full p-5"
+                      disabled={loading}
                     >
-                      Login
+                      {loading ? "Login..." : "Login"}
                     </Button>
                   </Form.Item>
+                </Col>
+                <Col xs={24} sm={24} className="text-center">
+                  <span>Don't have an account? </span>
+                  <Button
+                    type="link"
+                    className="p-0 underline"
+                    onClick={() => navigate("/register")}
+                  >
+                    Register Now
+                  </Button>
                 </Col>
               </Row>
             </Form>

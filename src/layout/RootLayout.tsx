@@ -5,6 +5,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import icon from "../assets/icon.jpg";
 import { userAPI } from "../api/endpoints/user";
 import { useUserStore } from "../store/useUserStore";
+import { Spin } from "antd";
 
 const RootLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -13,11 +14,13 @@ const RootLayout: React.FC = () => {
     setIsSidebarOpen((isSidebarOpen) => !isSidebarOpen);
   };
 
-  const { logout } = useUserStore();
+  const { logout, setLoading, loading } = useUserStore();
 
   const handleLogout = async () => {
+    setLoading(true);
     await userAPI.logout();
     logout();
+    setLoading(false);
   };
 
   return (
@@ -107,7 +110,11 @@ const RootLayout: React.FC = () => {
       )}
 
       <main className="flex-1 bg-white overflow-y-auto md:ml-60 lg:ml-1 md:mt-0 mt-12 p-2">
-        <Outlet />
+        {loading ? (
+          <Spin tip="Loading..." size="large" fullscreen />
+        ) : (
+          <Outlet />
+        )}
       </main>
     </div>
   );
