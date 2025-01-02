@@ -5,6 +5,7 @@ interface UsersDataField {
   name: string;
   email: string;
   password: string;
+  accessToken: string;
 }
 
 interface UserResponse<T> {
