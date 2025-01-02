@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { useUserStore } from "../store/useUserStore";
+import { userAPI } from "./endpoints/user";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,6 +30,7 @@ api.interceptors.response.use(
   (error) => {
     const { logout } = useUserStore.getState();
     if (error.response && error.response.status === 401) {
+      userAPI.logout();
       logout();
     }
 

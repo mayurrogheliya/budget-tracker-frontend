@@ -18,9 +18,14 @@ const RootLayout: React.FC = () => {
 
   const handleLogout = async () => {
     setLoading(true);
-    await userAPI.logout();
-    logout();
-    setLoading(false);
+    try {
+      await userAPI.logout();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    } finally {
+      logout();
+      setLoading(false);
+    }
   };
 
   return (

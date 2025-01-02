@@ -34,7 +34,6 @@ export const useUserStore = create<UserStore>((set) => {
     logout: async () => {
       localStorage.removeItem("accessToken");
       set({ user: null, isAuthenticated: false, accessToken: null });
-      await userAPI.logout();
     },
   };
 });
