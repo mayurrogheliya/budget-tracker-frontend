@@ -9,7 +9,7 @@ interface Transaction {
 }
 
 interface ApiResponse<T> {
-  transaction?: T;
+  data: T;
   statusCode: number;
   message: string;
 }
@@ -22,18 +22,16 @@ export const transactionAPI = {
     return response.data;
   },
 
-  create: async (
-    transaction: Transaction
-  ): Promise<ApiResponse<Transaction>> => {
-    const response = await api.post("/transactions", transaction);
+  create: async (data: Transaction): Promise<ApiResponse<Transaction>> => {
+    const response = await api.post("/transactions", data);
     return response.data;
   },
 
   update: async (
     id: string,
-    transaction: Transaction
+    data: Transaction
   ): Promise<ApiResponse<Transaction>> => {
-    const response = await api.put(`/transactions/${id}`, transaction);
+    const response = await api.put(`/transactions/${id}`, data);
     return response.data;
   },
 
