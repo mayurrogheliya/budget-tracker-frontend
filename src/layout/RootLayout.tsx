@@ -3,12 +3,21 @@ import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import icon from "../assets/icon.jpg";
+import { userAPI } from "../api/endpoints/user";
+import { useUserStore } from "../store/useUserStore";
 
 const RootLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((isSidebarOpen) => !isSidebarOpen);
+  };
+
+  const { logout } = useUserStore();
+
+  const handleLogout = async () => {
+    await userAPI.logout();
+    logout();
   };
 
   return (
@@ -79,6 +88,14 @@ const RootLayout: React.FC = () => {
               Analytics
             </NavLink>
           </nav>
+          <div className="mt-auto px-4 pb-4">
+            <button
+              onClick={handleLogout}
+              className="block w-full py-2 px-4 text-center bg-red-600 text-white rounded hover:bg-red-700 transition-colors duration-200"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </aside>
 
