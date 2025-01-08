@@ -26,7 +26,7 @@ const RegisterForm: React.FC = () => {
     try {
       setLoading(true);
       const response = await userAPI.create(values);
-      message.success(response?.message || "Register Success");
+      message.success(response?.data?.message || "Register Success");
       navigate("/login");
     } catch (error: any) {
       message.error(error?.response?.data?.message || "Register failed");
