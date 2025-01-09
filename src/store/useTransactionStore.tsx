@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { transactionAPI } from "../api/endpoints/transaction";
+import { message } from "antd";
 
 interface Transaction {
   _id: string;
@@ -41,7 +42,7 @@ export const useTransactionStore = create<TransactionState>((set, get) => ({
       const response = await transactionAPI.getAll({ search });
       get().setTransactions(response.data);
     } catch (error: any) {
-      console.log(error.message);
+      message.error(error?.response?.data?.message);
     }
   },
 }));

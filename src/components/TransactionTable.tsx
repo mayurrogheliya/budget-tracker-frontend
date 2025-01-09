@@ -54,7 +54,7 @@ const TransactionTable: React.FC = () => {
       message.success("Transaction deleted successfully");
       fetchTransactions(searchText);
     } catch (error: any) {
-      message.error(error.message);
+      message.error(error?.response?.data?.message);
     }
   };
 

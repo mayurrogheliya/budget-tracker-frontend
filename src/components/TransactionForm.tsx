@@ -61,7 +61,7 @@ const TransactionForm: React.FC = () => {
       }
       setEditingTransactions(null);
     } catch (error: any) {
-      message.error(error.message || "An error occurred");
+      message.error(error?.response?.data?.message || "An error occurred");
     } finally {
       setLoading(false);
     }

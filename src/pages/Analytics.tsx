@@ -29,7 +29,7 @@ const Analytics: React.FC = () => {
         const response = await transactionAPI.getAnalytics();
         setAnalyticsData(response.data);
       } catch (error: any) {
-        message.error(error.message);
+        message.error(error?.response?.data?.message);
       } finally {
         setLoading(false);
       }
