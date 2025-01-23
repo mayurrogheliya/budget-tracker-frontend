@@ -77,7 +77,16 @@ const TransactionForm: React.FC = () => {
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
               <Row gutter={16} className="grid-cols-1">
                 <Col xs={24} sm={12} md={8}>
-                  <Form.Item name="type" label="Transaction Type">
+                  <Form.Item
+                    name="type"
+                    label="Transaction Type"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please select transaction type!",
+                      },
+                    ]}
+                  >
                     <Select showSearch placeholder="Select transaction type">
                       {TransactionType.map((type, index) => (
                         <Select.Option value={type} key={index}>
@@ -103,6 +112,10 @@ const TransactionForm: React.FC = () => {
                           }
                         },
                       },
+                      {
+                        required: true,
+                        message: "Please enter amount!",
+                      },
                     ]}
                   >
                     <Input type="number" placeholder="Enter Amount" />
@@ -122,7 +135,16 @@ const TransactionForm: React.FC = () => {
               </Row>
               <Row gutter={16}>
                 <Col span="24">
-                  <Form.Item name="description" label="Description">
+                  <Form.Item
+                    name="description"
+                    label="Description"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please enter description!",
+                      },
+                    ]}
+                  >
                     <TextArea
                       rows={3}
                       placeholder="Enter transaction description"
@@ -131,13 +153,13 @@ const TransactionForm: React.FC = () => {
                 </Col>
               </Row>
               <Flex>
-                <Space>
+                <Space className="mt-3">
                   <Form.Item>
                     <Button
                       className="bg-sky-600 !text-gray-50 hover:!bg-sky-600"
                       htmlType="submit"
                     >
-                      Submit
+                      Save
                     </Button>
                   </Form.Item>
                   <Form.Item>
