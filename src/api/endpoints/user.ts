@@ -32,4 +32,8 @@ export const userAPI = {
   logout: async () => {
     return await api.post("/users/logout");
   },
+
+  verifyEmail: async (token: string) => {
+    return await api.get(`/users/verify-email/${token}`);
+  },
 };
