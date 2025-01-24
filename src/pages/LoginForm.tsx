@@ -105,15 +105,20 @@ const LoginForm: React.FC = () => {
                   </Form.Item>
                 </Col>
                 <Col xs={24} sm={24} className="mt-4">
-                  <Form.Item>
-                    <Button
-                      htmlType="submit"
-                      className="bg-sky-600 text-base !text-gray-50 hover:!bg-sky-600 w-full p-5"
-                      disabled={loading}
-                    >
-                      {loading ? "Login..." : "Login"}
-                    </Button>
-                  </Form.Item>
+                  <Button
+                    htmlType="submit"
+                    className="bg-sky-600 text-base !text-gray-50 hover:!bg-sky-600 w-full p-5"
+                    disabled={loading}
+                  >
+                    {loading ? "Login..." : "Login"}
+                  </Button>
+                  <Button
+                    type="link"
+                    className="underline"
+                    onClick={() => navigate("/forgot-password")}
+                  >
+                    Forgot Password?
+                  </Button>
                 </Col>
                 <Col xs={24} sm={24} className="text-center">
                   <span>Don't have an account? </span>
