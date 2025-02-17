@@ -21,7 +21,7 @@ This is the frontend repository for the Budget Tracker App. It is a web applicat
 
 ## Technologies Used
 - **HTML** and **CSS** for structure and styling
-- **JavaScript** for interactivity
+- **TypeScript** for interactivity
 - **Axios** for API requests
 - **Tailwind CSS** and **Antd** for design and layout
 
