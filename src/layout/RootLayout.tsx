@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import icon from "../assets/icon.jpg";
 import { userAPI } from "../api/endpoints/user";
 import { useUserStore } from "../store/useUserStore";
 import { Spin } from "antd";
@@ -33,7 +32,7 @@ const RootLayout: React.FC = () => {
       <div className="absolute md:hidden bg-slate-300/15 h-min w-full flex justify-between items-center px-2 py-2 border shadow-sm">
         <div className="flex gap-2 items-center">
           <div>
-            <img src={icon} alt="bt" width="25px" />
+            <img src="images/icon.jpg" alt="bt" width="25px" />
           </div>
           <h1 className="text-xl font-semibold text-center text-sky-800">
             Budget Tracker
@@ -57,7 +56,7 @@ const RootLayout: React.FC = () => {
             <div className="flex justify-between bg-gray-100 p-4 py-2 md:py-4 gap-3 items-center">
               <div className="w-full text-xl font-semibold text-sky-800 flex justify-center items-center gap-5">
                 <div className="md:block hidden">
-                  <img src={icon} alt="bt" width="30px" />
+                  <img src="images/icon.jpg" alt="bt" width="30px" />
                 </div>
                 <div>Budget Tracker</div>
               </div>
