@@ -123,8 +123,10 @@ const RegisterForm: React.FC = () => {
                 <Col xs={24} sm={24} className="mt-4">
                   <Form.Item>
                     <Button
+                      color="primary"
+                      variant="solid"
                       htmlType="submit"
-                      className="bg-sky-600 text-base ${} !text-gray-50 hover:!bg-sky-600 w-full p-5"
+                      className="text-base w-full p-5 disabled:bg-blue-300 disabled:text-white"
                       disabled={loading}
                     >
                       {loading ? "Register..." : "Register"}
