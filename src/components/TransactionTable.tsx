@@ -58,12 +58,18 @@ const TransactionTable: React.FC = () => {
     }
   };
 
+  const typeFilter = [...new Set(transactions.map((item) => item.type))].map(
+    (type) => ({ text: type, value: type })
+  );
+
   const columns = [
     {
       title: "Type",
       dataIndex: "type",
       key: "type",
-      render: (text: string) => highlightText(text, searchText),
+      filters: typeFilter,
+      onFilter: (value: string, record: Transaction) => record.type === value,
+      filterSearch: true,
     },
     {
       title: "Amount",
