@@ -42,3 +42,8 @@ This is the frontend repository for the Budget Tracker App. It is a web applicat
    ```bash
    npm run dev
    ```
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
+
