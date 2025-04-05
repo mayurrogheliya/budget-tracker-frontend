@@ -96,9 +96,9 @@ const Analytics: React.FC = () => {
                 }}
               />
               <AnalyticsCard
-                title="Income vs Expense"
+                title="Total Balance"
                 amount={analyticsData.netAmount}
-                type="Income vs Expense"
+                type="Total Balance"
                 chartData={{
                   labels: ["Income", "Expense"],
                   datasets: [
