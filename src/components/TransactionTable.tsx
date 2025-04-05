@@ -3,6 +3,7 @@ import { Button, Card, Input, message, Space, Table, Tooltip } from "antd";
 import React, { useCallback, useEffect } from "react";
 import { useTransactionStore } from "../store/useTransactionStore";
 import { transactionAPI } from "../api/endpoints/transaction";
+import { ColumnsType } from "antd/es/table";
 
 interface Transaction {
   _id: string;
@@ -61,14 +62,13 @@ const TransactionTable: React.FC = () => {
   const typeFilter = [...new Set(transactions.map((item) => item.type))].map(
     (type) => ({ text: type, value: type })
   );
-
-  const columns = [
+  const columns: ColumnsType<Transaction> = [
     {
       title: "Type",
       dataIndex: "type",
       key: "type",
       filters: typeFilter,
-      onFilter: (value: string, record: Transaction) => record.type === value,
+      onFilter: (value, record) => String(record.type) === String(value),
       filterSearch: true,
     },
     {
