@@ -46,6 +46,10 @@ const Analytics: React.FC = () => {
     return color;
   }
 
+  const hasData =
+    analyticsData?.sepExpenseData?.length > 0 ||
+    analyticsData?.sepIncomeData?.length > 0;
+
   return (
     <Space direction="vertical" style={{ width: "100%" }} className="mt-5">
       <Title level={2}>Analytics</Title>
@@ -53,7 +57,7 @@ const Analytics: React.FC = () => {
         <div className="flex justify-center items-center flex-wrap gap-10">
           {loading ? (
             <Spin tip="Loading..." size="large" />
-          ) : analyticsData ? (
+          ) : hasData ? (
             <>
               <AnalyticsCard
                 title="Income"

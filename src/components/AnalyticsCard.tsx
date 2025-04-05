@@ -23,7 +23,7 @@ const AnalyticsCard: React.FC<AnalyticsCardProps> = ({
       <Title level={4} style={{ color, margin: 0 }}>
         {title}
       </Title>
-      <Text style={{ fontSize: "20px", fontWeight: 600 }}>{`$${amount}`}</Text>
+      <Text style={{ fontSize: "20px", fontWeight: 600 }}>{`₹ ${amount}`}</Text>
       <div>
         <Doughnut
           data={chartData}
