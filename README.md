@@ -3,6 +3,10 @@
 ## Overview
 This is the frontend repository for the Budget Tracker App. It is a web application designed to help users manage their finances by tracking income and expenses. The frontend is built using modern web technologies to provide a seamless and responsive user experience.
 
+## Backend Repository
+You can find the backend code for this project here:  
+🔗 [Budget Tracker - Backend](https://github.com/mayurrogheliya/budget-tracker-backend)
+
 ## Features
 - User authentication (login and registration)
 - Dashboard to view income, expenses, and balance
