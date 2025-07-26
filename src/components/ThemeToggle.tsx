@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch } from 'antd';
-import { BulbOutlined, BulbFilled } from '@ant-design/icons';
+import { SunFilled, SunOutlined } from '@ant-design/icons';
 import { useThemeStore } from '../store/useThemeStore';
 
 const ThemeToggle: React.FC = () => {
@@ -10,8 +10,8 @@ const ThemeToggle: React.FC = () => {
     <Switch
       checked={theme === 'dark'}
       onChange={toggleTheme}
-      checkedChildren={<BulbFilled />}
-      unCheckedChildren={<BulbOutlined />}
+      checkedChildren={<SunFilled />}
+      unCheckedChildren={<SunOutlined />}
       aria-label="Toggle dark mode"
     />
   );
