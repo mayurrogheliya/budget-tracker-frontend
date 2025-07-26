@@ -40,7 +40,7 @@ const TransactionTable: React.FC = () => {
     const regex = text.toString().split(new RegExp(`(${highlight})`, "gi"));
     return regex.map((match, i) =>
       match.toLowerCase() === highlight.toLowerCase() ? (
-        <span key={i} style={{ backgroundColor: "yellow" }}>
+        <span key={i} className="bg-yellow-200 dark:bg-yellow-700 dark:text-white">
           {match}
         </span>
       ) : (

@@ -1,6 +1,7 @@
 import { Card, Typography } from "antd";
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
+import { useThemeStore } from '../store/useThemeStore';
 
 interface AnalyticsCardProps {
   title: string;
@@ -17,7 +18,9 @@ const AnalyticsCard: React.FC<AnalyticsCardProps> = ({
   type,
   chartData,
 }) => {
-  const color = type === "Expense" ? "#e74c3c" : "#2ecc71";
+  const color = type === "Expense" ? "#e74c3c" : "#39f78a";
+  const { theme } = useThemeStore();
+  const labelColor = theme === 'dark' ? '#fff' : '#222';
   return (
     <Card className="w-72 md:w-80 bg-gray-100/70">
       <Title level={4} style={{ color, margin: 0 }}>
@@ -28,7 +31,26 @@ const AnalyticsCard: React.FC<AnalyticsCardProps> = ({
         <Doughnut
           data={chartData}
           style={{ width: "300px", height: "300px" }}
-          options={{ responsive: true, maintainAspectRatio: false }}
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                labels: {
+                  color: labelColor,
+                  font: {
+                    size: 14,
+                  },
+                },
+              },
+            },
+            elements: {
+              arc: {
+                borderColor: theme === 'dark' ? '#bdbdbd' : '#e5e7eb',
+                borderWidth: 4,
+              },
+            },
+          }}
         />
       </div>
     </Card>

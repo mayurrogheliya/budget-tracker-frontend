@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #f1f5f9 inset !important;
+    -webkit-text-fill-color: #0f172a !important;
+    transition: background-color 5000s ease-in-out 0s;
+    color: #0f172a !important;
+}
+
+body.dark input:-webkit-autofill,
+body.dark input:-webkit-autofill:focus,
+body.dark input:-webkit-autofill:hover,
+body.dark input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #141414 inset !important;
+    -webkit-text-fill-color: #f1f5f9 !important;
+    transition: background-color 5000s ease-in-out 0s;
+    color: #f1f5f9 !important;
+}
+
+body.dark input {
+    caret-color: #ffffff !important;
+}
+
+body.dark textarea {
+    caret-color: #ffffff !important;
+}
+
+body.dark .ant-input {
+    caret-color: #ffffff !important;
+}
+
+body.dark .ant-input-password {
+    caret-color: #ffffff !important;
+}
