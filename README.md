@@ -12,6 +12,7 @@ You can find the backend code for this project here:
 - Dashboard to view income, expenses, and balance
 - Add, edit, and delete transactions
 - Interactive charts for financial insights
+- Theme switcher with light and dark mode support
 - Mobile-friendly responsive design
 
 ## Screenshots
