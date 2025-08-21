@@ -17,10 +17,10 @@ You can find the backend code for this project here:
 
 ## Screenshots
 1. **Dashboard**
-![Dashboard](https://github.com/user-attachments/assets/b465e35e-9096-4d73-9964-e218e9af8571)
+![Dashboard](https://github.com/user-attachments/assets/0404a403-1552-4432-9c2e-88aa8d91a8a5)
 
 2. **Analytics**
-![Analytics](https://github.com/user-attachments/assets/0849b0e2-728b-4287-8985-ce26c269ec4d)
+![Analytics](https://github.com/user-attachments/assets/008ff980-3be0-4db2-b049-4def3d9669c6)
 
 
 
