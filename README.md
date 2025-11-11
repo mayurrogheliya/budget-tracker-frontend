@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/mayurrogheliya/budget-tracker-frontend)
 ![Issues](https://img.shields.io/github/issues/mayurrogheliya/budget-tracker-frontend?)
 ![Pull Requests](https://img.shields.io/github/issues-pr/mayurrogheliya/budget-tracker-frontend)
-![Forks](https://img.shields.io/github/forks/mayurrogheliya/budget-tracker-frontend)
+![Forks](https://img.shields.io/github/forks/mayurrogheliya/budget-tracker-frontend?)
 ![Stars](https://img.shields.io/github/stars/mayurrogheliya/budget-tracker-frontend?)
 
 
