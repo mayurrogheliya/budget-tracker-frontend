@@ -8,7 +8,7 @@ function App() {
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
-    document.body.style.background = theme === 'dark' ? '#141414' : '#fff';
+    document.body.style.background = theme === 'dark' ? '#242424' : '#FFFCFC';
     if (theme === 'dark') {
       document.body.classList.add('dark');
     } else {
@@ -19,7 +19,14 @@ function App() {
   return (
     <ConfigProvider
       theme={{
-        algorithm: theme === 'dark' ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
+        algorithm:
+          theme === 'dark'
+            ? antdTheme.darkAlgorithm
+            : antdTheme.defaultAlgorithm,
+        token: {
+          colorBgContainer: theme === 'dark' ? '#242424' : '#FFFCFC',
+          colorText: theme === 'light' ? '#1F1F1F' : '#f0f0f0',
+        },
       }}
     >
       <AppRouters />

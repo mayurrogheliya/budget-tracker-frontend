@@ -43,7 +43,7 @@ const LoginForm: React.FC = () => {
   }, [isAuthenticated]);
 
   return (
-    <Space className="bg-slate-200/10 w-full h-screen flex justify-center">
+    <Space className="dark:bg-stone-900/10 w-full h-screen flex justify-center">
       <Card className=" m-2 shadow-sm max-w-md flex justify-center">
         <>
           <Space>

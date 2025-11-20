@@ -32,7 +32,7 @@ const RootLayout: React.FC = () => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="absolute md:hidden bg-slate-300/15 h-min w-full flex justify-between items-center px-2 py-2 shadow-md">
+      <div className="absolute md:hidden dark:bg-slate-700/15 h-min w-full flex justify-between items-center px-2 py-2 shadow-md">
         <div className="flex gap-2 items-center">
           <div>
             <img src={theme === 'dark' ? "images/icon-dark.png" : "images/icon.jpg"} alt="bt" width="25px" />
@@ -50,13 +50,13 @@ const RootLayout: React.FC = () => {
       </div>
 
       <aside
-        className={`fixed inset-y-0 left-0 md:w-60 bg-white dark:bg-[#28282B] shadow-lg z-30 lg:relative lg:w-72 w-60 flex flex-col h-screen transform transition-transform duration-300 ${
+        className={`fixed inset-y-0 left-0 md:w-60 bg-white dark:bg-[#242424] dark:shadow-gray-900/75 shadow-lg z-30 lg:relative lg:w-72 w-60 flex flex-col h-screen transform transition-transform duration-300 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:block`}
       >
         <div className="flex flex-col h-full">
           <div>
-            <div className="flex justify-between bg-gray-100 p-4 py-2 md:py-4 gap-3 items-center dark:bg-[#1a1a1a]">
+            <div className="flex justify-between bg-gray-100 p-4 py-2 md:py-4 gap-3 items-center dark:bg-[#2B2B2B]">
               <div className="w-full text-xl font-semibold text-sky-800 dark:text-sky-400 flex justify-center items-center gap-5">
                 <div className="md:block hidden">
                   <img src={theme === 'dark' ? "images/icon-dark.png" : "images/icon.jpg"} alt="bt" width="30px" />
@@ -119,7 +119,7 @@ const RootLayout: React.FC = () => {
         />
       )}
 
-      <main className="flex-1 bg-white overflow-y-auto dark:bg-[#28282B] md:ml-60 lg:ml-1 md:mt-0 mt-12 p-2">
+      <main className="flex-1 bg-white overflow-y-auto dark:bg-[#242424] md:ml-60 lg:ml-1 md:mt-0 mt-12 p-2">
         {loading ? (
           <Spin tip="Loading..." size="large" fullscreen />
         ) : (

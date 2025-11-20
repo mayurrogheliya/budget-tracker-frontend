@@ -22,7 +22,7 @@ const AnalyticsCard: React.FC<AnalyticsCardProps> = ({
   const { theme } = useThemeStore();
   const labelColor = theme === 'dark' ? '#fff' : '#222';
   return (
-    <Card className="w-72 md:w-80 bg-gray-100/70">
+    <Card className="w-72 md:w-80">
       <Title level={4} style={{ color, margin: 0 }}>
         {title}
       </Title>
@@ -46,7 +46,7 @@ const AnalyticsCard: React.FC<AnalyticsCardProps> = ({
             },
             elements: {
               arc: {
-                borderColor: theme === 'dark' ? '#bdbdbd' : '#e5e7eb',
+                borderColor: theme === 'dark' ? '#D8E3E7' : '#e5e7eb',
                 borderWidth: 4,
               },
             },
