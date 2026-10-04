@@ -14,6 +14,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { userAPI } from "../api/endpoints/user";
 import { useUserStore } from "../store/useUserStore";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const { Title } = Typography;
 
@@ -35,120 +37,127 @@ const RegisterForm: React.FC = () => {
     }
   };
   return (
-    <Space className="dark:bg-stone-900/10 w-full h-screen flex justify-center">
-      <Card className=" m-2 shadow-sm max-w-md flex justify-center">
-        <>
-          <Space>
-            <Form form={form} layout="vertical" onFinish={handelRegister}>
-              <Row gutter={16}>
-                <Col xs={24} sm={24}>
-                  <Title className="text-center font-mono">Register</Title>
-                </Col>
-                <Col xs={24} sm={24}>
-                  <Form.Item
-                    name="name"
-                    label="Name"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter your name!",
-                      },
-                    ]}
-                  >
-                    <Input
-                      size="large"
-                      prefix={
-                        <UserOutlined
-                          style={{
-                            color: "#bfbfbf",
-                          }}
-                        />
-                      }
-                      placeholder="Enter your name"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={24}>
-                  <Form.Item
-                    name="email"
-                    label="Email"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter your email!",
-                      },
-                      {
-                        type: "email",
-                        message: "Please enter valid email address",
-                      },
-                    ]}
-                  >
-                    <Input
-                      size="large"
-                      prefix={
-                        <MailOutlined
-                          style={{
-                            color: "#bfbfbf",
-                          }}
-                        />
-                      }
-                      placeholder="Enter your email"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={24}>
-                  <Form.Item
-                    name="password"
-                    label="Password"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please enter your password!",
-                      },
-                    ]}
-                  >
-                    <Input.Password
-                      size="large"
-                      prefix={
-                        <LockOutlined
-                          style={{
-                            color: "#bfbfbf",
-                          }}
-                        />
-                      }
-                      placeholder="Enter your password"
-                    />
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={24} className="mt-4">
-                  <Form.Item>
-                    <Button
-                      color="primary"
-                      variant="solid"
-                      htmlType="submit"
-                      className="text-base w-full p-5 disabled:bg-blue-300 disabled:text-white"
-                      disabled={loading}
+    <div className="min-h-[100dvh] flex flex-col">
+      <Header />
+      <main className="flex flex-1">
+        <Space className="dark:bg-stone-900/10 w-full px-2 py-5 justify-center">
+          <Card className=" m-2 shadow-sm max-w-md flex justify-center">
+            <Space>
+              <Form form={form} layout="vertical" onFinish={handelRegister}>
+                <Row gutter={16}>
+                  <Col xs={24} sm={24}>
+                    <Title className="text-center font-mono">Register</Title>
+                  </Col>
+                  <Col xs={24} sm={24}>
+                    <Form.Item
+                      name="name"
+                      label="Name"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please enter your name!",
+                        },
+                      ]}
                     >
-                      {loading ? "Register..." : "Register"}
+                      <Input
+                        size="large"
+                        prefix={
+                          <UserOutlined
+                            style={{
+                              color: "#bfbfbf",
+                              marginRight: "5px",
+                            }}
+                          />
+                        }
+                        placeholder="Enter your name"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} sm={24}>
+                    <Form.Item
+                      name="email"
+                      label="Email"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please enter your email!",
+                        },
+                        {
+                          type: "email",
+                          message: "Please enter valid email address",
+                        },
+                      ]}
+                    >
+                      <Input
+                        size="large"
+                        prefix={
+                          <MailOutlined
+                            style={{
+                              color: "#bfbfbf",
+                              marginRight: "5px",
+                            }}
+                          />
+                        }
+                        placeholder="Enter your email"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} sm={24}>
+                    <Form.Item
+                      name="password"
+                      label="Password"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please enter your password!",
+                        },
+                      ]}
+                    >
+                      <Input.Password
+                        size="large"
+                        prefix={
+                          <LockOutlined
+                            style={{
+                              color: "#bfbfbf",
+                              marginRight: "5px",
+                            }}
+                          />
+                        }
+                        placeholder="Enter your password"
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} sm={24} className="mt-4">
+                    <Form.Item>
+                      <Button
+                        color="primary"
+                        variant="solid"
+                        htmlType="submit"
+                        className="text-base w-full p-5 disabled:bg-blue-300 disabled:text-white"
+                        disabled={loading}
+                      >
+                        {loading ? "Register..." : "Register"}
+                      </Button>
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} sm={24} className="text-center">
+                    <span>Already have an account? </span>
+                    <Button
+                      type="link"
+                      className="p-0 underline"
+                      onClick={() => navigate("/login")}
+                    >
+                      Login here
                     </Button>
-                  </Form.Item>
-                </Col>
-                <Col xs={24} sm={24} className="text-center">
-                  <span>Already have an account? </span>
-                  <Button
-                    type="link"
-                    className="p-0 underline"
-                    onClick={() => navigate("/login")}
-                  >
-                    Login here
-                  </Button>
-                </Col>
-              </Row>
-            </Form>
-          </Space>
-        </>
-      </Card>
-    </Space>
+                  </Col>
+                </Row>
+              </Form>
+            </Space>
+          </Card>
+        </Space>
+      </main>
+      <Footer />
+    </div>
   );
 };
 

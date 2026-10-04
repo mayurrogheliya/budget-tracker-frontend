@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import { userAPI } from "../api/endpoints/user";
 import { useUserStore } from "../store/useUserStore";
 import { useThemeStore } from "../store/useThemeStore";
 import { Spin } from "antd";
-import ThemeToggle from '../components/ThemeToggle';
+import ThemeToggle from "../components/ThemeToggle";
 
 const RootLayout: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -35,7 +35,13 @@ const RootLayout: React.FC = () => {
       <div className="absolute md:hidden dark:bg-slate-700/15 h-min w-full flex justify-between items-center px-2 py-2 shadow-md">
         <div className="flex gap-2 items-center">
           <div>
-            <img src={theme === 'dark' ? "images/icon-dark.png" : "images/icon.jpg"} alt="bt" width="25px" />
+            <img
+              src={
+                theme === "dark" ? "images/icon-dark.png" : "images/icon.jpg"
+              }
+              alt="bt"
+              width="25px"
+            />
           </div>
           <h1 className="text-xl font-semibold text-center text-sky-800 dark:text-sky-400">
             Budget Tracker
@@ -56,13 +62,24 @@ const RootLayout: React.FC = () => {
       >
         <div className="flex flex-col h-full">
           <div>
-            <div className="flex justify-between bg-gray-100 p-4 py-2 md:py-4 gap-3 items-center dark:bg-[#2B2B2B]">
-              <div className="w-full text-xl font-semibold text-sky-800 dark:text-sky-400 flex justify-center items-center gap-5">
+            <div className="flex justify-between bg-gray-100 px-4 py-2 md:py-4 gap-3 items-center dark:bg-[#2B2B2B]">
+              <Link
+                to={"/"}
+                className="w-full text-xl font-semibold text-sky-800 dark:text-sky-400 flex justify-center items-center gap-2"
+              >
                 <div className="md:block hidden">
-                  <img src={theme === 'dark' ? "images/icon-dark.png" : "images/icon.jpg"} alt="bt" width="30px" />
+                  <img
+                    src={
+                      theme === "dark"
+                        ? "images/icon-dark.png"
+                        : "images/icon.jpg"
+                    }
+                    alt="bt"
+                    width="30px"
+                  />
                 </div>
                 <div>Budget Tracker</div>
-              </div>
+              </Link>
               <ThemeToggle />
               <button
                 className="bg-gray-200 dark:bg-gray-700 dark:text-white px-3 py-1 rounded-md hover:ring-1 hover:ring-black dark:hover:ring-gray-600 hover:cursor-pointer md:hidden"
@@ -74,13 +91,17 @@ const RootLayout: React.FC = () => {
 
             <nav className="flex flex-col mt-4 space-y-2 px-4">
               <NavLink
-                to="/"
+                to="/dashboard"
                 onClick={toggleSidebar}
                 className={({ isActive }) =>
                   `block py-2 px-4 rounded ${
-                    isActive ? "hover:bg-sky-700" : "hover:bg-gray-100 dark:hover:bg-[#3a3a3c]"
+                    isActive
+                      ? "hover:bg-sky-700"
+                      : "hover:bg-gray-100 dark:hover:bg-[#3a3a3c]"
                   } transition-colors duration-200 ${
-                    isActive ? "bg-sky-700 text-white" : "text-gray-700 dark:text-gray-300"
+                    isActive
+                      ? "bg-sky-700 text-white"
+                      : "text-gray-700 dark:text-gray-300"
                   }`
                 }
               >
@@ -91,9 +112,13 @@ const RootLayout: React.FC = () => {
                 onClick={toggleSidebar}
                 className={({ isActive }) =>
                   `block py-2 px-4 rounded ${
-                    isActive ? "hover:bg-sky-700" : "hover:bg-gray-100 dark:hover:bg-[#3a3a3c]"
+                    isActive
+                      ? "hover:bg-sky-700"
+                      : "hover:bg-gray-100 dark:hover:bg-[#3a3a3c]"
                   } transition-colors duration-200 ${
-                    isActive ? "bg-sky-700 text-white" : "text-gray-700 dark:text-gray-300"
+                    isActive
+                      ? "bg-sky-700 text-white"
+                      : "text-gray-700 dark:text-gray-300"
                   }`
                 }
               >

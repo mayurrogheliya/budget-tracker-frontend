@@ -15,10 +15,15 @@ import VerifyEmail from "../pages/VerifyEmail";
 import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
 import PublicRoute from "./PublicRoute";
+import LandingPage from "../pages/LandingPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
+      {/* Accessible to everyone */}
+      <Route index element={<LandingPage />} />
+
+      {/* Only for unauthenticated users */}
       <Route element={<PublicRoute />}>
         <Route path="login" element={<LoginForm />} />
         <Route path="register" element={<RegisterForm />} />
@@ -26,14 +31,16 @@ const router = createBrowserRouter(
         <Route path="forgot-password" element={<ForgotPassword />} />
         <Route path="reset-password/:token" element={<ResetPassword />} />
       </Route>
+
+      {/* Only for authenticated users */}
       <Route element={<ProtectedRoute />}>
         <Route element={<RootLayout />}>
-          <Route index element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/analytics" element={<Analytics />} />
         </Route>
       </Route>
-    </Route>
-  )
+    </Route>,
+  ),
 );
 
 const AppRouters: React.FC = () => {

@@ -6,7 +6,7 @@ const PublicRoute: React.FC = () => {
   const isAuthenticated = useUserStore((state) => state.isAuthenticated);
 
   if (isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return <Outlet />;
